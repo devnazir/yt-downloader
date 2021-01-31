@@ -4,6 +4,7 @@ const fs = require("fs");
 const url = require("url");
 const qs = require("qs");
 const ytdl = require("ytdl-core");
+const port = 3000;
 
 app.use(express.static("public"));
 
@@ -34,4 +35,4 @@ app.get("/download", async function (req, res) {
     }
 });
 
-app.listen(8000, () => console.log("localhost:8000"));
+app.listen(port, () => console.log("localhost:8000"));
