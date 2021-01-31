@@ -14,5 +14,5 @@ inputURL.addEventListener("keydown", e => {
 });
 
 function downloadVideo(url) {
-    window.location.href = `${window.location.href}/download?url=${url}`;
+    window.location.href = `${window.location.href}download?url=${url}`;
 }
