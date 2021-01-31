@@ -1,0 +1,75 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #04040d;
+  color: white;
+}
+body .container {
+  max-width: 1440px;
+  height: 100vh;
+  margin: auto;
+}
+body .container .header {
+  display: flex;
+  height: inherit;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+body .container .header nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  color: white;
+  border-top: 5px solid #4768EE;
+}
+body .container .header nav h2 {
+  margin: 2rem;
+  font-family: "Open Sans", sans-serif;
+  font-weight: bold;
+}
+body .container .header nav h2 .yt {
+  color: #FF0000;
+}
+body .container .header .header-wrapper {
+  font-family: "Open Sans", sans-serif;
+}
+body .container .header .header-wrapper h1 {
+  font-size: 3.5em;
+  width: 560px;
+  text-align: center;
+}
+body .container .header .header-wrapper .url-container {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+body .container .header .header-wrapper .url-container .url, body .container .header .header-wrapper .url-container .btn-download {
+  font-family: "Open sans", sans-serif;
+  padding: 0.5rem;
+  outline: none;
+  border: none;
+  outline: none;
+  margin-right: 1rem;
+  border-radius: 3px;
+}
+body .container .header .header-wrapper .url-container .url {
+  width: 50%;
+}
+body .container .header .header-wrapper .url-container .btn-download {
+  font-weight: bold;
+  margin-right: 0;
+  cursor: pointer;
+  background-color: #4768EE;
+  color: white;
+}
+@media (max-width: 576px) {
+  body .container .header .header-wrapper h1 {
+    width: 100%;
+  }
+}
+
+/*# sourceMappingURL=main.css.map */
