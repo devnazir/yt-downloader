@@ -22,7 +22,7 @@ app.get("/download", async function (req, res) {
         const info = await ytdl.getBasicInfo(youtubeLink);
         const title = info.player_response.videoDetails.title;
 
-        res.header('Content-type', 'text/html');
+        res.header('Content-type', 'video/mp4');
         res.header(`Content-Disposition`, `attachment; filename="${title}.mp4"`);
 
         ytdl(youtubeLink, {
