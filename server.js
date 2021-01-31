@@ -4,7 +4,6 @@ const fs = require("fs");
 const url = require("url");
 const qs = require("qs");
 const ytdl = require("ytdl-core");
-const port = 3000;
 
 app.use(express.static("public"));
 
@@ -35,4 +34,4 @@ app.get("/download", async function (req, res) {
     }
 });
 
-app.listen(port, () => console.log("localhost:8000"));
+app.listen(process.env.PORT || 3000, () => console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env));
