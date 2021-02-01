@@ -21,6 +21,8 @@ body .container .header {
 }
 body .container .header nav {
   position: fixed;
+  display: flex;
+  justify-content: space-between;
   top: 0;
   width: 100%;
   color: white;
@@ -33,6 +35,36 @@ body .container .header nav h2 {
 }
 body .container .header nav h2 .yt {
   color: #FF0000;
+}
+body .container .header nav .input-search {
+  position: absolute;
+  right: 2rem;
+  top: 2rem;
+  border: none;
+  outline: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  width: 0;
+  opacity: 0;
+  z-index: -1;
+  transition: 0.3s 0.2s;
+}
+body .container .header nav .input-search.open-input-search {
+  opacity: 1;
+  width: 30vmin;
+  z-index: 1;
+}
+body .container .header nav img {
+  display: block;
+  margin: 2rem;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  transform: scale(1);
+  transition: 0.3s;
+}
+body .container .header nav img.hide-img-search {
+  transform: scale(0);
 }
 body .container .header .header-wrapper {
   font-family: "Open Sans", sans-serif;

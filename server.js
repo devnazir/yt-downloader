@@ -4,13 +4,19 @@ const fs = require("fs");
 const url = require("url");
 const qs = require("qs");
 const ytdl = require("ytdl-core");
+const fetch = require('node-fetch');
+
+function renderHTML(req, res, path) {
+    return fs.readFile(path, function (err, data) {
+        if(err) return err;
+        res.end(data);
+    });
+}
 
 app.use(express.static("public"));
 
 app.get("/", function (req, res) {
-    fs.readFile("./views/index.html", function (err, data) {
-        res.end(data);
-    });
+    renderHTML(req, res, "./views/index.html");
 });
 
 app.get("/download", async function (req, res) {
@@ -21,6 +27,7 @@ app.get("/download", async function (req, res) {
 
         const info = await ytdl.getBasicInfo(youtubeLink);
         const title = info.player_response.videoDetails.title;
+        console.log(info)
 
         res.header(`Content-Disposition`, `attachment; filename="${title}.mp4"`);
 
@@ -33,4 +40,8 @@ app.get("/download", async function (req, res) {
     }
 });
 
-app.listen(process.env.PORT || 3000, () => console.log("Running"));
+app.get("/search", function (req, res) {
+    renderHTML(req, res, "./views/index.html");
+});
+
+app.listen(process.env.PORT || 3000, () => console.log(`Running at localhost:${3000 || process.env.PORT}`));

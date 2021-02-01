@@ -21,6 +21,8 @@ body {
 
             nav {
                 position: fixed;
+                display: flex;
+                justify-content: space-between;
                 top: 0;
                 width: 100%;
                 color: white;
@@ -33,6 +35,40 @@ body {
 
                     .yt {
                         color: #FF0000;
+                    }
+                }
+
+                .input-search {
+                    position: absolute;
+                    right: 2rem;
+                    top: 2rem;
+                    border: none;
+                    outline: none;
+                    padding: .5rem 1rem;
+                    border-radius: 5px;
+                    width: 0;
+                    opacity: 0;
+                    z-index: -1;
+                    transition: .3s .2s;
+
+                    &.open-input-search {
+                        opacity: 1;
+                        width: 30vmin;
+                        z-index: 1;
+                    }
+                }
+                
+                img {
+                    display: block;
+                    margin: 2rem;
+                    width: 25px;
+                    height: 25px;
+                    cursor: pointer;
+                    transform: scale(1);
+                    transition: .3s;
+
+                    &.hide-img-search {
+                        transform: scale(0);
                     }
                 }
             }
