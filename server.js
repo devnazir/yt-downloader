@@ -44,4 +44,4 @@ app.get("/search", function (req, res) {
     renderHTML(req, res, "./views/index.html");
 });
 
-app.listen(process.env.PORT || 3000, () => console.log(`Running at localhost:3000`));
+app.listen(process.env.PORT || 3000, () => console.log(`Running`));
