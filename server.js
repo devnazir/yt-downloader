@@ -4,7 +4,6 @@ const fs = require("fs");
 const url = require("url");
 const qs = require("qs");
 const ytdl = require("ytdl-core");
-const fetch = require('node-fetch');
 
 function renderHTML(req, res, path) {
     return fs.readFile(path, function (err, data) {
