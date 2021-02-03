@@ -40,11 +40,15 @@ function searchVideos (e) {
 }
 
 async function resultSearchVideos (value) {
-  hideHeaderWrapper()
-  const data = await fetch(`${window.location.origin}/search?query=${value}`, {
-    method: 'GET'
-  })
-  getVideos(data)
+  try {
+    hideHeaderWrapper()
+    const data = await fetch(`${window.location.origin}/search?query=${value}`, {
+      method: 'GET'
+    })
+    getVideos(data)
+  } catch (err) {
+    console.log(err)
+  }
 }
 
 function hideHeaderWrapper () {

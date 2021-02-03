@@ -35,15 +35,23 @@ app.get('/download', async function (req, res) {
 })
 
 app.get('/search', async function (req, res) {
-  const query = req.query.query
-  const data = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=8&q=${query}&type=video&key=${process.env.APIKEY}`)
-  console.log(data)
-  resultSearchVideos(data, res)
+  try {
+    const query = req.query.query
+    const data = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=8&q=${query}&type=video&key=${process.env.APIKEY}`)
+    console.log(data)
+    resultSearchVideos(data, res)
+  } catch (err) {
+    console.log(err)
+  }
 })
 
 async function resultSearchVideos (data, res) {
-  const response = await data.json()
-  res.json(response)
+  try {
+    const response = await data.json()
+    res.json(response)
+  } catch (err) {
+    console.log(err)
+  }
 }
 
 app.listen(process.env.PORT || 3000, () => console.log('Running at localhost:3000'))

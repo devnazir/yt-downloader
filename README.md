@@ -7,3 +7,10 @@
 <li>npm install</li>
 <li>npm start</li>
 </ul>
+
+### Note
+<p>Before you're running this project, please create a file with a name "key.env". and then input like this:</p>
+```
+APIKEY=Your Apikey
+```
+<p>You can get apikey at https://console.developers.google.com/</p>
