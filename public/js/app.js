@@ -58,6 +58,7 @@ async function getVideos (response) {
   try {
     const data = await response.json()
     const items = data.items
+    console.log(data)
     showVideos(items)
   } catch (err) {
     console.log(err)
