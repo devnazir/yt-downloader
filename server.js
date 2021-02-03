@@ -40,6 +40,8 @@ app.get('/search', async function (req, res) {
   resultSearchVideos(data, res)
 })
 
+console.log(process.env.APIKEY)
+
 async function resultSearchVideos (data, res) {
   const response = await data.json()
   res.json(response)
