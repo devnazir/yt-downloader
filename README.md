@@ -9,7 +9,7 @@
 </ul>
 
 ### Note
-<p>Before you're running this project, please create a file with a name "key.env". and then input like this:</p>
+<p>Before you're running this project, please create file with a name "key.env". and then input like this:</p>
 
 ```
 APIKEY=Your Apikey
