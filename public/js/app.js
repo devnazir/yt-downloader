@@ -55,9 +55,13 @@ function hideHeaderWrapper () {
 }
 
 async function getVideos (response) {
-  const data = await response.json()
-  const items = data.items
-  showVideos(items)
+  try {
+    const data = await response.json()
+    const items = data.items
+    showVideos(items)
+  } catch (err) {
+    console.log(err)
+  }
 }
 
 function showVideos (videos) {
