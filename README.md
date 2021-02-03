@@ -9,7 +9,7 @@
 </ul>
 
 ### Note
-<p>Before you're running this project, please create file with a name <b color="red">`key.env`</b> at folder <b>yt-downloader</b>. and then input like this:</p>
+<p>Before you're running this project, please create file with a name <b color="red">key.env</b> at folder <b>yt-downloader</b>. and then input like this:</p>
 
 ```
 APIKEY=Your Apikey
