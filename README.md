@@ -9,8 +9,10 @@
 </ul>
 
 ### Note
-<p>Before you're running this project, please create a file with a name "key.env". and then input like this:</p>
+<p>Before you're running this project, please create file with a name <b color="red">key.env</b> at folder <b>yt-downloader</b>. and then input like this:</p>
+
 ```
 APIKEY=Your Apikey
 ```
+
 <p>You can get apikey at https://console.developers.google.com/</p>
