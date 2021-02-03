@@ -25,8 +25,10 @@ body {
                 justify-content: space-between;
                 top: 0;
                 width: 100%;
+                z-index: 9999;
                 color: white;
                 border-top: 5px solid #4768EE;
+                backdrop-filter: blur(10px);
 
                 h2 {
                     margin: 2rem;
@@ -113,6 +115,61 @@ body {
                     h1 {
                         width: 100%;
                     }
+                }
+            }
+
+            &.change-height {
+                height: 150px;
+            }
+        }
+
+        .result-search {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            width: 90%;
+            margin: auto;
+            padding-bottom: 3rem;
+            font-family: "Open sans", sans-serif;
+
+            .card {
+                .thumbnail {
+                    width: inherit;
+                    position: relative;
+
+                    img {
+                        width: 100%;
+                    }
+
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        top: 0;
+                        display: block;
+                        width: 100%;
+                        height: 100%;
+                        background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1));
+                    }
+                }
+
+                .title {
+                    margin-bottom: .5rem;
+                    margin-top: .2rem;
+                    font-size: .9em;
+                }
+
+                button {
+                    font-family: "Open sans", sans-serif;
+                    display: block;
+                    width: 100%;
+                    background-color: #4768EE;
+                    border: none;
+                    outline: none;
+                    padding: .5rem 1rem;
+                    color: white;
+                    font-weight: bold;
+                    border-radius: 5px;
+                    cursor: pointer;
                 }
             }
         }

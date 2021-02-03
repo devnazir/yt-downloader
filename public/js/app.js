@@ -1,67 +1,93 @@
-const inputURL = document.querySelector("input.url");
-const btnDownload = document.querySelector(".btn-download");
-const imgSearch = document.querySelector(".img-search");
+const inputURL = document.querySelector('input.url')
+const btnDownload = document.querySelector('.btn-download')
 
-btnDownload.addEventListener("click", () => {
-    const url = inputURL.value;
+btnDownload.addEventListener('click', () => {
+  const url = inputURL.value
+  downloadVideo(url)
+})
+
+inputURL.addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    const url = inputURL.value
     downloadVideo(url)
-});
+  }
+})
 
-inputURL.addEventListener("keydown", e => {
-    if (e.key === "Enter") {
-        const url = inputURL.value;
-        downloadVideo(url)
-    }
-});
-
-function downloadVideo(url) {
-    window.location.href = `${window.location.origin}/download?url=${url}`;
+function downloadVideo (url) {
+  window.location.href = `${window.location.origin}/download?url=${url}`
 }
 
-// Reminder myself
-// Don't forget to Refactor
-imgSearch.addEventListener("click", function () {
-    const inputSearch = this.previousElementSibling;
-    inputSearch.classList.add("open-input-search");
-    this.classList.add("hide-img-search");
+function showInputButton (imgSearch) {
+  const inputSearch = imgSearch.previousElementSibling
+  inputSearch.classList.add('open-input-search')
+  imgSearch.classList.add('hide-img-search')
 
-    inputSearch.focus();
-    inputSearch.addEventListener("focusout", () => {
-        this.classList.remove("hide-img-search");
-        inputSearch.classList.remove("open-input-search")
-    });
+  inputSearch.focus()
+  inputSearch.addEventListener('focusout', () => {
+    imgSearch.classList.remove('hide-img-search')
+    inputSearch.classList.remove('open-input-search')
+    inputSearch.value = ''
+  })
 
-    inputSearch.addEventListener("keydown", searchVideos)
-});
-
-function searchVideos(e) {
-    if (e.key == "Enter") {
-        const valueSearch = this.value;
-        resultSearchVideos(valueSearch);
-    }
+  inputSearch.addEventListener('keydown', searchVideos)
 }
 
-async function resultSearchVideos(value) {
-    const headerWrapper = document.querySelector(".header-wrapper");
-    headerWrapper.style.display = "none";
-
-    if (history.pushState) {
-        document.title = "Result Search";
-        window.history.pushState(null, '', `/search?query=${value}`);
-    } 
-
-    const data = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=${value}&type=video&key=AIzaSyDv8wAkRENMnAXnAqx4QsUs8ufDokXTXt0`);
-
-    showVideos(data);
+function searchVideos (e) {
+  if (e.key === 'Enter') {
+    const valueSearch = this.value
+    resultSearchVideos(valueSearch)
+  }
 }
 
-async function showVideos(response) {
-    const data = await response.json();
-    const items = data.items;
-
-    console.log(items)
+async function resultSearchVideos (value) {
+  hideHeaderWrapper()
+  const data = await fetch(`${window.location.origin}/search?query=${value}`, {
+    method: 'GET'
+  })
+  getVideos(data)
 }
 
-if(document.title === "Youtube Downloader") {
-    window.history.pushState(null, '', `/`);
+function hideHeaderWrapper () {
+  const header = document.querySelector('header')
+  const headerWrapper = header.querySelector('.header-wrapper')
+  header.classList.add('change-height')
+  headerWrapper.style.display = 'none'
 }
+
+async function getVideos (response) {
+  const data = await response.json()
+  const items = data.items
+  showVideos(items)
+}
+
+function showVideos (videos) {
+  let cards = ''
+  videos.forEach(video => {
+    cards += componentResult(video)
+  })
+
+  const resultSearch = document.querySelector('.result-search')
+  resultSearch.innerHTML = cards
+}
+
+function getDataClickedVideo (id) {
+  downloadVideo(`https://www.youtube.com/watch?v=${id}`)
+}
+
+function componentResult (video) {
+  return `<div class="card">
+            <div class="thumbnail">
+              <img src="${video.snippet.thumbnails.medium.url}" alt="">
+            </div>
+            <div class="title">${video.snippet.title}</div>
+            <button class="download-video" data-id=${video.id.videoId}>Download</button>
+          </div>`
+}
+
+document.addEventListener('click', event => {
+  if (event.target.className === 'img-search') {
+    showInputButton(event.target)
+  } else if (event.target.className === 'download-video') {
+    getDataClickedVideo(event.target.dataset.id)
+  }
+})
