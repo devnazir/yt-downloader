@@ -38,7 +38,7 @@ app.get('/search', async function (req, res) {
   try {
     const query = req.query.query
     const maxResult = req.query.result
-    const data = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=${maxResult}&q=${query}&type=video&key=${process.env.APIKEY2}`)
+    const data = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=${maxResult}&q=${query}&type=video&key=${process.env.APIKEY}`)
 
     resultSearchVideos(data, res)
   } catch (err) {
