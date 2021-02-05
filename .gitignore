@@ -1,4 +1,3 @@
 node_modules
 key.env
-.sass-cache/
-*.css.map
+public/scss/_styles.scss
