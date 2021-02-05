@@ -5,7 +5,7 @@
 <li>git clone https://github.com/devnazir/yt-downloader.git</li>
 <li>cd yt-downloader</li>
 <li>npm install</li>
-<li>npm start</li>
+<li>npm start or npm run server</li>
 </ul>
 
 ### Note
