@@ -1,6 +1,9 @@
 const inputURL = document.querySelector('input.url')
 const btnDownload = document.querySelector('.btn-download')
 
+let onScroll = false
+let resultFirstSearch = 8
+
 btnDownload.addEventListener('click', () => {
   const url = inputURL.value
   downloadVideo(url)
@@ -39,16 +42,40 @@ function searchVideos (e) {
   }
 }
 
-async function resultSearchVideos (value) {
+async function resultSearchVideos (value, count) {
   try {
     hideHeaderWrapper()
-    const data = await fetch(`${window.location.origin}/search?query=${value}`, {
+    const result = count ?? 8
+    const data = await fetch(`${window.location.origin}/search?query=${value}&result=${result}`, {
       method: 'GET'
     })
     getVideos(data)
+    document.body.style.overflowY = 'scroll'
+
+    if (!onScroll) {
+      window.addEventListener('scroll', () => {
+        const { scrollHeight, scrollTop, clientHeight } = document.documentElement
+        if (scrollTop + clientHeight >= scrollHeight) {
+          onScroll = true
+          resultFirstSearch += 8
+          resultSearchVideos(value, resultFirstSearch)
+          moreVideos()
+        }
+      })
+    }
   } catch (err) {
     console.log(err)
   }
+}
+
+function moreVideos () {
+  const elDots = document.querySelector('.more-videos')
+  const dots = Array.from(document.querySelector('.more-videos').innerHTML)
+  const dot = dots.map((dot, i) => {
+    return `<span class="dot-${i + 1}">${dot}</span>`
+  }).join('').toString()
+
+  elDots.innerHTML = dot
 }
 
 function hideHeaderWrapper () {
@@ -62,7 +89,6 @@ async function getVideos (response) {
   try {
     const data = await response.json()
     const items = data.items
-    console.log(data)
     showVideos(items)
   } catch (err) {
     console.log(err)
@@ -77,6 +103,11 @@ function showVideos (videos) {
 
   const resultSearch = document.querySelector('.result-search')
   resultSearch.innerHTML = cards
+
+  const nextPage = document.createElement('button')
+  nextPage.textContent = '...'
+  nextPage.setAttribute('class', 'more-videos')
+  resultSearch.append(nextPage)
 }
 
 function getDataClickedVideo (id) {

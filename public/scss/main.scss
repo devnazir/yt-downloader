@@ -6,6 +6,8 @@
 body {
     background-color: #04040d;
     color: white;
+    height: 100vh;
+    overflow: hidden;
 
     .container {
         max-width: 1440px;
@@ -131,6 +133,7 @@ body {
             margin: auto;
             padding-bottom: 3rem;
             font-family: "Open sans", sans-serif;
+            position: relative;
 
             .card {
                 .thumbnail {
@@ -172,6 +175,43 @@ body {
                     cursor: pointer;
                 }
             }
+
+            .more-videos {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                margin: auto;
+                padding: .5rem .7rem;
+                background: transparent;
+                font-size: 2rem;
+                color: white;
+                border: none;
+                outline: none;
+                display: flex;
+
+                span[class^="dot-"] {
+                    display: block;
+                }
+
+                .dot-1 {
+                    animation: dot-scale .3s;
+                }
+
+                .dot-2 {
+                    animation: dot-scale .3s .6s;
+                }
+
+                .dot-3 {
+                    animation: dot-scale .3s .9s;
+                }
+            }
         }
+    }
+}
+
+@keyframes dot-scale {
+    to {
+        transform: scale(1.5);
     }
 }

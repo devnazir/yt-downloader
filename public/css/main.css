@@ -6,6 +6,8 @@
 body {
   background-color: #04040d;
   color: white;
+  height: 100vh;
+  overflow: hidden;
 }
 body .container {
   max-width: 1440px;
@@ -116,6 +118,7 @@ body .container .result-search {
   margin: auto;
   padding-bottom: 3rem;
   font-family: "Open sans", sans-serif;
+  position: relative;
 }
 body .container .result-search .card .thumbnail {
   width: inherit;
@@ -150,6 +153,38 @@ body .container .result-search .card button {
   font-weight: bold;
   border-radius: 5px;
   cursor: pointer;
+}
+body .container .result-search .more-videos {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  padding: 0.5rem 0.7rem;
+  background: transparent;
+  font-size: 2rem;
+  color: white;
+  border: none;
+  outline: none;
+  display: flex;
+}
+body .container .result-search .more-videos span[class^=dot-] {
+  display: block;
+}
+body .container .result-search .more-videos .dot-1 {
+  animation: dot-scale 0.3s;
+}
+body .container .result-search .more-videos .dot-2 {
+  animation: dot-scale 0.3s 0.6s;
+}
+body .container .result-search .more-videos .dot-3 {
+  animation: dot-scale 0.3s 0.9s;
+}
+
+@keyframes dot-scale {
+  to {
+    transform: scale(1.5);
+  }
 }
 
 /*# sourceMappingURL=main.css.map */

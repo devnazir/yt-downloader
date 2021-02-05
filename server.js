@@ -37,8 +37,9 @@ app.get('/download', async function (req, res) {
 app.get('/search', async function (req, res) {
   try {
     const query = req.query.query
-    const data = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=8&q=${query}&type=video&key=${process.env.APIKEY}`)
-    console.log(data)
+    const maxResult = req.query.result
+    const data = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=${maxResult}&q=${query}&type=video&key=${process.env.APIKEY2}`)
+
     resultSearchVideos(data, res)
   } catch (err) {
     console.log(err)
