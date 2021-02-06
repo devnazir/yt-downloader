@@ -1,23 +1,42 @@
 const inputURL = document.querySelector('input.url')
-const btnDownload = document.querySelector('.btn-download')
+const btnDownload = document.querySelectorAll('.btn-download')
 
 let onScroll = false
-let resultFirstSearch = 8
+let resultFirstSearch = 16
 
-btnDownload.addEventListener('click', () => {
+function clickedBtnDownload (e) {
   const url = inputURL.value
-  downloadVideo(url)
-})
+  if (e.target.classList.contains('video')) {
+    downloadVideo(url)
+  } else if (e.target.classList.contains('mp3')) {
+    downloadAudio(url)
+  }
+}
 
 inputURL.addEventListener('keydown', e => {
   if (e.key === 'Enter') {
     const url = inputURL.value
+    console.log(url.length)
     downloadVideo(url)
   }
 })
 
 function downloadVideo (url) {
-  window.location.href = `${window.location.origin}/download?url=${url}`
+  if (url) {
+    window.location.href = `${window.location.origin}/download?url=${url}`
+    return
+  }
+
+  alert('Please insert your Video URL')
+}
+
+function downloadAudio (url) {
+  if (url) {
+    window.location.href = `${window.location.origin}/mp3?url=${url}`
+    return
+  }
+
+  alert('Please insert your Video URL')
 }
 
 function showInputButton (imgSearch) {
@@ -45,12 +64,12 @@ function searchVideos (e) {
 async function resultSearchVideos (value, count) {
   try {
     hideHeaderWrapper()
-    const result = count ?? 8
+    const result = count ?? resultFirstSearch
     const data = await fetch(`${window.location.origin}/search?query=${value}&result=${result}`, {
       method: 'GET'
     })
     getVideos(data)
-    document.body.style.overflowY = 'scroll'
+    document.body.style.overflowY = 'auto'
 
     if (!onScroll) {
       window.addEventListener('scroll', () => {
@@ -131,3 +150,5 @@ document.addEventListener('click', event => {
     getDataClickedVideo(event.target.dataset.id)
   }
 })
+
+btnDownload.forEach(button => button.addEventListener('click', clickedBtnDownload))

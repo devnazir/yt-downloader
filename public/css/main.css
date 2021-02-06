@@ -7,7 +7,7 @@ body {
   background-color: #04040d;
   color: white;
   height: 100vh;
-  overflow: hidden;
+  overflow-y: hidden;
 }
 body .container {
   max-width: 1440px;
@@ -101,6 +101,12 @@ body .container .header .header-wrapper .url-container .btn-download {
   cursor: pointer;
   background-color: #4768EE;
   color: white;
+  margin-left: 0.3rem;
+}
+body .container .header .header-wrapper span.error-text {
+  display: block;
+  text-align: center;
+  margin-top: 2rem;
 }
 @media (max-width: 576px) {
   body .container .header .header-wrapper h1 {
