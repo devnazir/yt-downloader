@@ -66,7 +66,7 @@ app.get('/mp3', async function (req, res) {
     res.header('Content-Disposition', `attachment; filename="${title}.mp3"`)
 
     ytdl(youtubeLink, {
-      format: 'mp4',
+      format: 'mp3',
       filter: 'audioonly'
     }).pipe(res)
   } catch (err) {

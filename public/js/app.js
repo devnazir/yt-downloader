@@ -3,6 +3,9 @@ const btnDownload = document.querySelectorAll('.btn-download')
 
 let onScroll = false
 let resultFirstSearch = 16
+let scrollLeftTitle = null
+let onMouseDown = false
+let startX = 0
 
 function clickedBtnDownload (e) {
   const url = inputURL.value
@@ -127,6 +130,37 @@ function showVideos (videos) {
   nextPage.textContent = '...'
   nextPage.setAttribute('class', 'more-videos')
   resultSearch.append(nextPage)
+
+  scrollingTitle()
+}
+
+function scrollingTitle () {
+  const everyTitle = document.querySelectorAll('.title-wrap .title')
+  everyTitle.forEach(title => {
+    title.addEventListener('mousedown', mouseDown)
+    title.addEventListener('mousemove', mouseMove)
+    title.addEventListener('mouseup', mouseUp)
+    title.addEventListener('mouseleave', mouseUp)
+  })
+}
+
+function mouseDown (e) {
+  e.preventDefault()
+  onMouseDown = true
+  startX = e.clientX
+  scrollLeftTitle = this.parentElement.scrollLeft
+}
+
+function mouseMove (e) {
+  e.preventDefault()
+  const moveX = e.clientX
+  if (!onMouseDown) return
+  const onScroll = moveX - startX
+  this.parentElement.scrollLeft = scrollLeftTitle - onScroll
+}
+
+function mouseUp (e) {
+  onMouseDown = false
 }
 
 function getDataClickedVideo (id) {
@@ -138,8 +172,13 @@ function componentResult (video) {
             <div class="thumbnail">
               <img src="${video.snippet.thumbnails.medium.url}" alt="">
             </div>
-            <div class="title">${video.snippet.title}</div>
-            <button class="download-video" data-id=${video.id.videoId}>Download</button>
+            <div class="title-wrap">
+              <div class="title">${video.snippet.title}</div>
+            </div>
+            <div class="choose-btn">
+              <button class="download-video" data-id=${video.id.videoId}>mp4</button>
+              <button class="download-audio" data-id=${video.id.videoId}>mp3</button>
+            </div>
           </div>`
 }
 

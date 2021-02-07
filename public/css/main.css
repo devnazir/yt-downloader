@@ -126,6 +126,9 @@ body .container .result-search {
   font-family: "Open sans", sans-serif;
   position: relative;
 }
+body .container .result-search .card {
+  overflow: hidden;
+}
 body .container .result-search .card .thumbnail {
   width: inherit;
   position: relative;
@@ -142,15 +145,25 @@ body .container .result-search .card .thumbnail::after {
   height: 100%;
   background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1));
 }
-body .container .result-search .card .title {
+body .container .result-search .card .title-wrap {
+  width: 100%;
+  overflow: hidden;
+}
+body .container .result-search .card .title-wrap .title {
+  cursor: pointer;
   margin-bottom: 0.5rem;
   margin-top: 0.2rem;
   font-size: 0.9em;
+  width: max-content;
 }
-body .container .result-search .card button {
+body .container .result-search .card .choose-btn {
+  display: flex;
+  justify-content: space-between;
+}
+body .container .result-search .card .choose-btn button {
   font-family: "Open sans", sans-serif;
   display: block;
-  width: 100%;
+  width: 45%;
   background-color: #4768EE;
   border: none;
   outline: none;
